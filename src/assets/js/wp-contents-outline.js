@@ -22,6 +22,7 @@
           wrapper.remove();
         }
 
+        params.headings.first().before(wrapper);
         wrapper.attr('aria-hidden', 'false');
         wpco.append(outlines);
       })();
