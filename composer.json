@@ -1,0 +1,26 @@
+{
+  "name": "inc2734/wp-contents-outline",
+  "description": "A library for WordPress. This adds contents outline of the post.",
+  "license": "GPL-2.0+",
+  "version": "0.1.0",
+  "require": {
+    "php": ">=5.6"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.7"
+  },
+  "authors": [
+    {
+      "name": "Takashi Kitajima",
+      "email": "inc@2inc.org"
+    }
+  ],
+  "autoload": {
+    "psr-4" : {
+      "Inc2734\\WP_Contents_Outline\\" : "src"
+    }
+  },
+  "scripts": {
+    "test": "bash bin/phpunit.sh"
+  }
+}
