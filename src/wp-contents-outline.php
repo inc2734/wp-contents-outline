@@ -48,14 +48,14 @@ class Inc2734_WP_Contents_Outline {
 
 		ob_start();
 		?>
-		<script>
-		jQuery(function($) {
-			$('#<?php echo esc_js( $id ); ?>').wpContentsOutline({
-				headings: $('<?php echo esc_js( $post_class ); ?> <?php echo esc_js( $attributes['selector'] ); ?>').children('h2, h3, h4, h5, h6')
-			});
-		});
-		</script>
 		<div class="wpco" aria-hidden="true" id="<?php echo esc_attr( $id ); ?>">
+			<script>
+			jQuery(function($) {
+				$('#<?php echo esc_js( $id ); ?>').wpContentsOutline({
+					headings: $('<?php echo esc_js( $post_class ); ?> <?php echo esc_js( $attributes['selector'] ); ?>').children('h2, h3, h4, h5, h6')
+				});
+			});
+			</script>
 			<h2 class="wpco__title"><?php esc_html_e( 'Outline', 'inc2734-wp-contents-outline' ); ?></h2>
 			<div class="wpco__body"></div>
 		</div>
