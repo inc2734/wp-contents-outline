@@ -5,6 +5,9 @@
  * @license GPL-2.0+
  */
 
+/**
+ * Display contents outline
+ */
 class Inc2734_WP_Contents_Outline {
 
 	public function __construct() {
@@ -44,14 +47,14 @@ class Inc2734_WP_Contents_Outline {
 		$post_id    = $_post->ID;
 		$post_type  = $_post->post_type;
 		$post_class = '.' . $post_type . '-' . $post_id;
-		$id         = 'wpco-' . time();
+		$wpco_id    = 'wpco-' . time();
 
 		ob_start();
 		?>
-		<div class="wpco" aria-hidden="true" id="<?php echo esc_attr( $id ); ?>">
+		<div class="wpco" aria-hidden="true" id="<?php echo esc_attr( $wpco_id ); ?>">
 			<script>
 			jQuery(function($) {
-				$('#<?php echo esc_js( $id ); ?>').wpContentsOutline({
+				$('#<?php echo esc_js( $wpco_id ); ?>').wpContentsOutline({
 					headings: $('<?php echo esc_js( $post_class ); ?> <?php echo esc_js( $attributes['selector'] ); ?>').children('h2, h3, h4, h5, h6')
 				});
 			});

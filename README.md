@@ -1,4 +1,4 @@
-# WP Awesome Widgets
+# WP Contents Outline
 
 [![Build Status](https://travis-ci.org/inc2734/wp-contents-outline.svg?branch=master)](https://travis-ci.org/inc2734/wp-contents-outline)
 [![Latest Stable Version](https://poser.pugx.org/inc2734/wp-contents-outline/v/stable)](https://packagist.org/packages/inc2734/wp-contents-outline)
