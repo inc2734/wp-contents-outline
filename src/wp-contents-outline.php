@@ -74,7 +74,7 @@ class Inc2734_WP_Contents_Outline {
 	public function _wp_enqueue_scripts() {
 		wp_enqueue_script(
 			'wp-contents-outline',
-			home_url( str_replace( ABSPATH, '', __DIR__ ) . '/assets/js/wp-contents-outline.js' ),
+			site_url( str_replace( ABSPATH, '', __DIR__ ) . '/assets/js/wp-contents-outline.js' ),
 			[ 'jquery' ],
 			false,
 			false
