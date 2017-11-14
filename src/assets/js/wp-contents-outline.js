@@ -1,12 +1,13 @@
 ;(jQuery(function($) {
   $.fn.wpContentsOutline = function(params) {
     var params = $.extend({
-      headings: $('h2, h3, h4, h5, h6'),
+      headings : $('h2, h3, h4, h5, h6'),
+      moveToBefore1stHeading: true
     }, params);
 
     return this.each((i, e) => {
-      var wrapper  = $(e);
-      var wpco     = wrapper.find('.wpco__body');
+      var wrapper = $(e);
+      var wpco    = wrapper.find('.wpco__body');
 
       var outlines = $('<ol />');
 
@@ -22,22 +23,33 @@
           wrapper.remove();
         }
 
-        params.headings.first().before(wrapper);
+        if (true === params.moveToBefore1stHeading) {
+          params.headings.first().before(wrapper);
+        }
+
         wrapper.attr('aria-hidden', 'false');
         wpco.append(outlines);
       })();
 
-      function _createTree(parent, child, base = 2) {
-        const nest = parseInt(child.prop('tagName').replace('H', '') - base);
+      /**
+       * Create tree
+       *
+       * @param   {dom}  parent  The children wrapper element
+       * @param   {dom}  heading  Heading
+       * @param   {Number} hierarchical  Hierarchical
+       * @return  {dom}  The tree
+       */
+      function _createTree(parent, heading, hierarchical = 2) {
+        const nest = parseInt(heading.prop('tagName').replace('H', '') - hierarchical);
 
         if (0 > nest) {
           return parent;
         }
 
         if (0 === nest) {
-          parent.append(_createItem(child));
+          parent.append(_createItem(heading));
         } else {
-          const children = _createChildren(parent, child, base);
+          const children = _createSubTree(parent, heading, hierarchical);
 
           if (1 > parent.children('li').length) {
             parent.append($('<li />').append(children));
@@ -49,22 +61,36 @@
         return parent;
       }
 
-      function _createItem(child) {
+      /**
+       * Create child item
+       *
+       * @param {dom}  heading  Heading
+       * @return {dom}  Child item
+       */
+      function _createItem(heading) {
         return $('<li />').append(
           $('<a />')
-            .text(child.text())
-            .attr('href', '#' + child.attr('id'))
+            .text(heading.text())
+            .attr('href', '#' + heading.attr('id'))
         );
       }
 
-      function _createChildren(parent, child, base) {
+      /**
+       * Create subtree
+       *
+       * @param   {dom}  parent  The children wrapper element
+       * @param   {dom}  heading  Heading
+       * @param   {Number} hierarchical  Hierarchical
+       * @return  {dom}  The tree
+       */
+      function _createSubTree(parent, heading, hierarchical) {
         let _parent;
         if (1 > parent.children('li:last-child').children('ol').length) {
           _parent = $('<ol />');
         } else{
           _parent = parent.children('li:last-child').children('ol');
         }
-        return _createTree(_parent, child, base + 1);
+        return _createTree(_parent, heading, hierarchical + 1);
       }
     });
   };
