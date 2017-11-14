@@ -33,7 +33,7 @@ add_shortcode( 'wp_contents_outline', function( array $attributes = array() ) {
 
 	$post_id    = $_post->ID;
 	$post_type  = $_post->post_type;
-	$post_class = '.' . $post_type . '-' . $post_id;
+	$post_class = '.post-' . $post_id;
 	$wpco_id    = 'wpco-' . uniqid( rand() );
 
 	ob_start();

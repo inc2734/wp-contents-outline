@@ -2,7 +2,7 @@
   "name": "inc2734/wp-contents-outline",
   "description": "A library for WordPress. This adds contents outline of the post.",
   "license": "GPL-2.0+",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "require": {
     "php": ">=5.6"
   },
