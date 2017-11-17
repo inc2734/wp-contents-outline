@@ -35,11 +35,19 @@ class Inc2734_WP_Contents_Outline {
 	 * @return void
 	 */
 	public function _wp_enqueue_scripts() {
+		$relative_path = '/inc2734/wp-contents-outline/src/assets/js/wp-contents-outline.js';
+		$src  = get_theme_file_uri( '/vendor' . $relative_path );
+		$path = get_theme_file_path( '/vendor' . $relative_path );
+
+		if ( ! file_exists( $path ) ) {
+			return;
+		}
+
 		wp_enqueue_script(
 			'wp-contents-outline',
-			site_url( str_replace( ABSPATH, '', __DIR__ ) . '/assets/js/wp-contents-outline.js' ),
+			$src,
 			[ 'jquery' ],
-			false,
+			filemtime( $path ),
 			false
 		);
 	}
