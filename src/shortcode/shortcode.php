@@ -18,6 +18,7 @@ add_shortcode( 'wp_contents_outline', function( array $attributes = array() ) {
 
 	$attributes = shortcode_atts( [
 		'selector'                   => null,
+		'headings'                   => 'h2,h3,h4,h5,h6',
 		'post_id'                    => get_the_ID(),
 		'move_to_before_1st_heading' => 'false',
 	], $attributes );

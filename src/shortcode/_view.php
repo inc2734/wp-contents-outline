@@ -4,6 +4,10 @@
  * @author inc2734
  * @license GPL-2.0+
  */
+
+if ( empty( $attributes['headings'] ) ) {
+	return;
+}
 ?>
 
 <div class="wpco" aria-hidden="true" id="<?php echo esc_attr( $wpco_id ); ?>">
@@ -16,7 +20,7 @@
 	<script>
 	jQuery(function($) {
 		$('#<?php echo esc_js( $wpco_id ); ?>').wpContentsOutline({
-			headings: $('<?php echo esc_js( $post_class ); ?> <?php echo esc_js( $attributes['selector'] ); ?>').children('h2, h3, h4, h5, h6'),
+			headings: $('<?php echo esc_js( $post_class ); ?> <?php echo esc_js( $attributes['selector'] ); ?>').children('<?php echo esc_js( $attributes['headings'] ); ?>'),
 			moveToBefore1stHeading: <?php echo esc_js( $move_to ); ?>
 		});
 	});
