@@ -19,12 +19,12 @@ if ( empty( $attributes['headings'] ) ) {
 	?>
 	<script>
 	jQuery(function($) {
-		$('#<?php echo esc_js( $wpco_id ); ?>').wpContentsOutline({
+		$('#<?php echo esc_js( $wpco_id ); ?>').contentsOutline({
 			headings: $('<?php echo esc_js( $post_class ); ?> <?php echo esc_js( $attributes['selector'] ); ?>').children('<?php echo esc_js( $attributes['headings'] ); ?>'),
 			moveToBefore1stHeading: <?php echo esc_js( $move_to ); ?>
 		});
 	});
 	</script>
 	<h2 class="wpco__title"><?php esc_html_e( 'Outline', 'inc2734-wp-contents-outline' ); ?></h2>
-	<div class="wpco__body"></div>
+	<div class="contents-outline"></div>
 </div>
