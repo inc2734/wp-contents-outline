@@ -2,7 +2,7 @@
   "name": "inc2734/wp-contents-outline",
   "description": "A library for WordPress. This adds contents outline of the post.",
   "license": "GPL-2.0+",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "require": {
     "php": ">=5.6"
   },
@@ -24,8 +24,6 @@
     }
   },
   "scripts": {
-    "post-package-install": "yarn install && yarn upgrade",
-    "post-package-update": "composer run post-package-install",
     "test": [
       "vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
       "vendor/bin/phpcs -p -s -v -n . --standard=./codesniffer.ruleset.xml --extensions=php",

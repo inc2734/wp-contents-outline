@@ -35,7 +35,7 @@ class Inc2734_WP_Contents_Outline {
 	 * @return void
 	 */
 	public function _wp_enqueue_scripts() {
-		$relative_path = '/inc2734/wp-contents-outline/node_modules/jquery.contents-outline/dist/jquery.contents-outline.min.js';
+		$relative_path = '/inc2734/wp-contents-outline/src/assets/packages/jquery.contents-outline/dist/jquery.contents-outline.min.js';
 		$src  = get_theme_file_uri( '/vendor' . $relative_path );
 		$path = get_theme_file_path( '/vendor' . $relative_path );
 
