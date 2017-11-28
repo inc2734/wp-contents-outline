@@ -2,8 +2,10 @@
   "author": "inc2734",
   "license": "GPL-2.0+",
   "dependencies": {
+    "jquery.contents-outline": "^0.1.1"
+  },
+  "devDependencies": {
     "gulp": "^3.9.1",
-    "jquery.contents-outline": "^0.1.1",
     "rimraf": "^2.6.2"
   },
   "scripts": {
