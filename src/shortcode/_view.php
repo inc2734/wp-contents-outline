@@ -22,7 +22,7 @@ if ( empty( $attributes['headings'] ) ) {
 			$move_to = 'false';
 		}
 		?>
-		<script>
+		<script defer>
 		jQuery(function($) {
 			$('#<?php echo esc_js( $wpco_id ); ?>').contentsOutline({
 				headings: $('<?php echo esc_js( $post_class ); ?> <?php echo esc_js( $attributes['selector'] ); ?>').children('<?php echo esc_js( $attributes['headings'] ); ?>'),
