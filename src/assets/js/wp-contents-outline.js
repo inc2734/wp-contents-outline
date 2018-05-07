@@ -1,5 +1,7 @@
 'use strict';
 
+import $ from 'jquery';
+
 $.fn.wpContentsOutline = function() {
   return this.each(function(i, e) {
     var post_class = $(e).attr('data-wpco-post-class');
