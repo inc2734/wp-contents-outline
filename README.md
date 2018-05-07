@@ -19,3 +19,9 @@ new Inc2734\WP_Contents_Outline\Contents_Outline();
 // e.g. You want to contents outline from `$('.c-entry__content').children('h2, h3, h4, h5, h6')`
 [wp_contents_outline post_id="(Optional)" selector=".c-entry__content" move_to_before_1st_heading="true"]
 ```
+
+```
+// Fire
+import 'vendor/inc2734/wp-contents-outline/src/assets/js/wp-contents-outline.js';
+$('.wpco-wrapper').wpContentsOutline();
+```

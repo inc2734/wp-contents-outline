@@ -8,26 +8,17 @@
 if ( empty( $attributes['headings'] ) ) {
 	return;
 }
-
-add_action( 'wp_footer', function() use ( $attributes, $post_class, $wpco_id ) {
-	$move_to = 'true';
-	if ( isset( $attributes['move_to_before_1st_heading'] ) && 'false' === $attributes['move_to_before_1st_heading'] ) {
-		$move_to = 'false';
-	}
-	?>
-<script>
-jQuery(function($) {
-	$('#<?php echo esc_js( $wpco_id ); ?>').contentsOutline({
-		headings: $('<?php echo esc_js( $post_class ); ?> <?php echo esc_js( $attributes['selector'] ); ?>').children('<?php echo esc_js( $attributes['headings'] ); ?>'),
-		moveToBefore1stHeading: <?php echo esc_js( $move_to ); ?>
-	});
-});
-</script>
-	<?php
-}, 9999 );
 ?>
 
-<div class="wpco-wrapper" aria-hidden="true" id="<?php echo esc_attr( $wpco_id ); ?>">
+<div
+	class="wpco-wrapper"
+	aria-hidden="true"
+	id="<?php echo esc_attr( $wpco_id ); ?>"
+	data-wpco-post-class="<?php echo esc_attr( $post_class ); ?>"
+	data-wpco-selector="<?php echo esc_attr( $attributes['selector'] ); ?>"
+	data-wpco-headings="<?php echo esc_attr( $attributes['headings'] ); ?>"
+	data-wpco-move="<?php echo esc_attr( $attributes['move_to_before_1st_heading'] ); ?>"
+	>
 	<?php
 	do_action( 'inc2734_wp_contents_outline_before', $attributes );
 	?>
