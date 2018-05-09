@@ -7,7 +7,7 @@ $.fn.wpContentsOutline = function() {
     var post_class = $(e).attr('data-wpco-post-class');
     var selector   = $(e).attr('data-wpco-selector');
     var headings   = $(e).attr('data-wpco-headings');
-    var move       = $(e).attr('data-wpco-move');
+    var move       = 'true' === $(e).attr('data-wpco-move') ? true : false;
 
     $(e).contentsOutline({
       headings: $(post_class).find(selector).children(headings),
