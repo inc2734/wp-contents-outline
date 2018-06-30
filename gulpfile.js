@@ -22,15 +22,15 @@ gulp.task('remove-packages-dir', function(cb) {
 /**
  * Copy dependencies node modules to src directory
  */
-gulp.task('packages', ['remove-packages-dir'], function(cb) {
+gulp.task('packages', gulp.series('remove-packages-dir', function(cb) {
   var packages = [
     dir.src.packages + '/jquery.contents-outline/**'
   ];
   return gulp.src(packages, {base: 'node_modules'})
     .pipe(gulp.dest(dir.dist.packages));
-});
+}));
 
 /**
  * Build
  */
-gulp.task('build', ['packages']);
+gulp.task('build', gulp.series('packages'));

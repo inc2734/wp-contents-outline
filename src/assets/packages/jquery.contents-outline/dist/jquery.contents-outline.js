@@ -59,6 +59,9 @@ jquery = jquery && jquery.hasOwnProperty('default') ? jquery['default'] : jquery
         var hierarchical = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 2;
 
         var nest = parseInt(heading.prop('tagName').replace('H', '') - hierarchical);
+        if (isNaN(nest)) {
+          nest = 0;
+        }
 
         if (0 > nest) {
           return parent;
