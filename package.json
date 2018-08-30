@@ -2,7 +2,7 @@
   "author": "inc2734",
   "license": "GPL-2.0+",
   "dependencies": {
-    "jquery.contents-outline": "^0.1.2"
+    "jquery.contents-outline": "^0.2.0"
   },
   "devDependencies": {
     "gulp": "^4.0.0",
