@@ -40,14 +40,22 @@ class Contents_Outline {
 		$src  = get_theme_file_uri( '/vendor' . $relative_path );
 		$path = get_theme_file_path( '/vendor' . $relative_path );
 
-		if ( ! file_exists( $path ) ) {
-			return;
-		}
-
 		wp_enqueue_script(
 			'jquery.contents-outline',
 			$src,
 			[ 'jquery' ],
+			filemtime( $path ),
+			true
+		);
+
+		$relative_path = '/inc2734/wp-contents-outline/src/assets/js/wp-contents-outline.min.js';
+		$src  = get_theme_file_uri( '/vendor' . $relative_path );
+		$path = get_theme_file_path( '/vendor' . $relative_path );
+
+		wp_enqueue_script(
+			'wp-contents-outline',
+			$src,
+			[ 'jquery.contents-outline' ],
 			filemtime( $path ),
 			true
 		);
