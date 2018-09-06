@@ -7,4 +7,4 @@ phpmd.ruleset.xml export-ignore
 phpunit.xml.dist export-ignore
 bin export-ignore
 tests export-ignore
-webpack.config.js
+webpack.config.js export-ignore
