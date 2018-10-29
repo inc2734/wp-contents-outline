@@ -90,7 +90,7 @@
 
 
         function _createItem(heading) {
-          return $('<li />').append($('<a />').text(heading.text()).attr('href', '#' + heading.attr('id')));
+          return $('<li />').append($('<a />').text(heading.text().replace(/[\n\r]/g, '')).attr('href', '#' + heading.attr('id')));
         }
         /**
          * Create subtree

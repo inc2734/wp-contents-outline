@@ -1,20 +1,37 @@
 {
-  "name": "jquery.contents-outline",
-  "version": "0.2.0",
-  "author": "inc2734",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/inc2734/jquery.contents-outline"
+  "_from": "jquery.contents-outline@0.2.1",
+  "_id": "jquery.contents-outline@0.2.1",
+  "_inBundle": false,
+  "_integrity": "sha512-Tr7V0ynxfeF8b2uq/xG2lhnXEjctDwdQQc3aHL7QSP3aFT8pCSgREo+Mm8GwG4YQmG74NSYIKGBcm3h6VbY/1w==",
+  "_location": "/jquery.contents-outline",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "jquery.contents-outline@0.2.1",
+    "name": "jquery.contents-outline",
+    "escapedName": "jquery.contents-outline",
+    "rawSpec": "0.2.1",
+    "saveSpec": null,
+    "fetchSpec": "0.2.1"
   },
-  "main": "src/jquery.contents-outline.js",
-  "files": [
-    "src",
-    "dist",
-    "package.json",
-    "LICENSE",
-    "README.md"
+  "_requiredBy": [
+    "#USER",
+    "/"
   ],
+  "_resolved": "https://registry.npmjs.org/jquery.contents-outline/-/jquery.contents-outline-0.2.1.tgz",
+  "_shasum": "a2a68491dbc9acb56aff299d75d11a0ee4008e71",
+  "_spec": "jquery.contents-outline@0.2.1",
+  "_where": "/Users/inc/github/wp-contents-outline",
+  "author": {
+    "name": "inc2734"
+  },
+  "bugs": {
+    "url": "https://github.com/inc2734/jquery.contents-outline/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "## Get started",
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
@@ -25,12 +42,29 @@
     "rollup-plugin-node-resolve": "^3.3.0",
     "uglify-js": "^3.4.8"
   },
+  "files": [
+    "src",
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "homepage": "https://github.com/inc2734/jquery.contents-outline#readme",
+  "license": "MIT",
+  "main": "src/jquery.contents-outline.js",
+  "name": "jquery.contents-outline",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inc2734/jquery.contents-outline.git"
+  },
   "scripts": {
-    "start": "npm run build",
+    "build": "npm run js",
     "cleanup:js": "rimraf dist && mkdir -p dist",
-    "minify:js": "uglifyjs dist/jquery.contents-outline.js -o dist/jquery.contents-outline.min.js -mc",
-    "js:rollup": "rollup src/jquery.contents-outline.js -f=iife -c=rollup.config.js --dir dist --experimentalCodeSplitting",
     "js": "npm run cleanup:js && npm run js:rollup && npm run minify:js",
-    "build": "npm run js"
-  }
+    "js:rollup": "rollup src/jquery.contents-outline.js -f=iife -c=rollup.config.js --dir dist --experimentalCodeSplitting",
+    "minify:js": "uglifyjs dist/jquery.contents-outline.js -o dist/jquery.contents-outline.min.js -mc",
+    "prepublish": "npm run build",
+    "start": "npm run build"
+  },
+  "version": "0.2.1"
 }
