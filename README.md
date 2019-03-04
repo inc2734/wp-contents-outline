@@ -13,7 +13,7 @@ $ composer require inc2734/wp-contents-outline
 ```
 <?php
 // When Using composer auto loader
-new Inc2734\WP_Contents_Outline\Contents_Outline();
+new Inc2734\WP_Contents_Outline\Bootstrap();
 
 // Set shortcode in post
 // e.g. You want to contents outline from `$('.c-entry__content').children('h2, h3, h4, h5, h6')`

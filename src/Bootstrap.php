@@ -7,7 +7,7 @@
 
 namespace Inc2734\WP_Contents_Outline;
 
-class Contents_Outline {
+class Bootstrap {
 
 	public function __construct() {
 		load_textdomain( 'inc2734-wp-contents-outline', __DIR__ . '/languages/' . get_locale() . '.mo' );
@@ -48,7 +48,7 @@ class Contents_Outline {
 			true
 		);
 
-		$relative_path = '/vendor/inc2734/wp-contents-outline/src/assets/js/wp-contents-outline.min.js';
+		$relative_path = '/vendor/inc2734/wp-contents-outline/src/assets/js/app.min.js';
 		$src  = get_template_directory_uri() . $relative_path;
 		$path = get_template_directory() . $relative_path;
 

@@ -1,6 +1,14 @@
 <?php
-// @todo
-class Sample_Test extends WP_UnitTestCase {
+/**
+ * Class SampleTest
+ *
+ * @package inc2734/wp-basis
+ */
+
+/**
+ * @todo
+ */
+class SampleTest extends WP_UnitTestCase {
 
 	public function setup() {
 		parent::setup();
@@ -14,6 +22,8 @@ class Sample_Test extends WP_UnitTestCase {
 	 * @test
 	 */
 	public function sample() {
-		new Inc2734\WP_Contents_Outline\Contents_Outline();
+		$bootstrap = new Inc2734\WP_Contents_Outline\Bootstrap();
+
+		$this->assertTrue( is_a( $bootstrap, 'Inc2734\WP_Contents_Outline\Bootstrap' ) );
 	}
 }
