@@ -13,7 +13,7 @@
  */
 add_shortcode(
 	'wp_contents_outline',
-	function( array $attributes = array() ) {
+	function( array $attributes = [] ) {
 		if ( ! is_singular() ) {
 			return;
 		}
@@ -27,6 +27,8 @@ add_shortcode(
 			],
 			$attributes
 		);
+
+		$attributes = apply_filters( 'inc2734_wp_contents_outline_args', $attributes );
 
 		if ( empty( $attributes['post_id'] ) ) {
 			return;
