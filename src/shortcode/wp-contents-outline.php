@@ -5,6 +5,8 @@
  * @license GPL-2.0+
  */
 
+use Inc2734\WP_Contents_Outline\App\View;
+
 /**
  * @param array $attributes
  *        @var string selector
@@ -40,12 +42,21 @@ add_shortcode(
 		}
 
 		$post_id    = $_post->ID;
-		$post_type  = $_post->post_type;
 		$post_class = '.post-' . $post_id;
 		$wpco_id    = 'wpco-' . uniqid( rand() );
 
 		ob_start();
-		include( __DIR__ . '/_view.php' );
+
+		View::render(
+			'wp-contents-outline',
+			null,
+			[
+				'wpco_id'    => $wpco_id,
+				'post_class' => $post_class,
+				'attributes' => $attributes,
+			]
+		);
+
 		return ob_get_clean();
 	}
 );
