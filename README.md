@@ -129,7 +129,7 @@ add_action(
 );
 ```
 
-### inc2734_wp_contents_outline_view_<slug>
+### inc2734_wp_contents_outline_view_&lt;slug&gt;
 ```
 /**
  * @param string $name
@@ -147,12 +147,11 @@ add_action(
 );
 ```
 
-### inc2734_wp_contents_outline_view_<slug>-<name>
+### inc2734_wp_contents_outline_view_&lt;slug&gt;-&lt;name&gt;
 ```
 /**
  * @param array $vars
  */
-add_acti
 add_action(
 	'inc2734_wp_contents_outline_view_<slug>-<name>',
 	function( $vars ) {
