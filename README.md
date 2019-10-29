@@ -12,7 +12,7 @@ $ composer require inc2734/wp-contents-outline
 ## How to use
 ```
 <?php
-new Inc2734\WP_Contents_Outline\Bootstrap();
+new \Inc2734\WP_Contents_Outline\Bootstrap();
 
 // Set shortcode in post
 // e.g. You want to contents outline from `$('.c-entry__content').children('h2, h3, h4, h5, h6')`
@@ -129,7 +129,7 @@ add_action(
 );
 ```
 
-### inc2734_wp_contents_outline_view_<slug>
+### inc2734_wp_contents_outline_view_&lt;slug&gt;
 ```
 /**
  * @param string $name
@@ -147,7 +147,7 @@ add_action(
 );
 ```
 
-### inc2734_wp_contents_outline_view_<slug>-<name>
+### inc2734_wp_contents_outline_view_&lt;slug&gt;-&lt;name&gt;
 ```
 /**
  * @param array $vars
