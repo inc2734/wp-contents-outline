@@ -152,7 +152,6 @@ add_action(
 /**
  * @param array $vars
  */
-add_acti
 add_action(
 	'inc2734_wp_contents_outline_view_<slug>-<name>',
 	function( $vars ) {
