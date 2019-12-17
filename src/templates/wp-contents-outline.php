@@ -11,7 +11,7 @@ if ( empty( $attributes['headings'] ) ) {
 ?>
 
 <div
-	class="wpco-wrapper"
+	class="wpco-wrapper <?php echo esc_attr( $wpco_class ); ?>"
 	aria-hidden="true"
 	id="<?php echo esc_attr( $wpco_id ); ?>"
 	data-wpco-post-class="<?php echo esc_attr( $post_class ); ?>"

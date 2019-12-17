@@ -26,6 +26,8 @@ add_shortcode(
 				'headings'                   => 'h2,h3,h4,h5,h6',
 				'post_id'                    => get_the_ID(),
 				'move_to_before_1st_heading' => 'false',
+				'id'                         => 'wpco-' . uniqid( rand() ),
+				'class'                      => null,
 			],
 			$attributes
 		);
@@ -43,7 +45,6 @@ add_shortcode(
 
 		$post_id    = $_post->ID;
 		$post_class = '.post-' . $post_id;
-		$wpco_id    = 'wpco-' . uniqid( rand() );
 
 		ob_start();
 
@@ -51,7 +52,8 @@ add_shortcode(
 			'wp-contents-outline',
 			null,
 			[
-				'wpco_id'    => $wpco_id,
+				'wpco_id'    => $attributes['id'],
+				'wpco_class' => $attributes['class'],
 				'post_class' => $post_class,
 				'attributes' => $attributes,
 			]
