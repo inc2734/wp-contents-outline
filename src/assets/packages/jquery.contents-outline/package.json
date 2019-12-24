@@ -1,27 +1,26 @@
 {
-  "_from": "jquery.contents-outline@0.2.1",
-  "_id": "jquery.contents-outline@0.2.1",
+  "_from": "jquery.contents-outline@^0.2.2",
+  "_id": "jquery.contents-outline@0.2.2",
   "_inBundle": false,
-  "_integrity": "sha512-Tr7V0ynxfeF8b2uq/xG2lhnXEjctDwdQQc3aHL7QSP3aFT8pCSgREo+Mm8GwG4YQmG74NSYIKGBcm3h6VbY/1w==",
+  "_integrity": "sha512-OfFk3LKcbSfYzGs8yQiehKKUoqdu7ddot5sCsbPkfZFQfg45szOfoEgqrn80yMlSD71qOoAlH8jPUhBJIOiabg==",
   "_location": "/jquery.contents-outline",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "jquery.contents-outline@0.2.1",
+    "raw": "jquery.contents-outline@^0.2.2",
     "name": "jquery.contents-outline",
     "escapedName": "jquery.contents-outline",
-    "rawSpec": "0.2.1",
+    "rawSpec": "^0.2.2",
     "saveSpec": null,
-    "fetchSpec": "0.2.1"
+    "fetchSpec": "^0.2.2"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/jquery.contents-outline/-/jquery.contents-outline-0.2.1.tgz",
-  "_shasum": "a2a68491dbc9acb56aff299d75d11a0ee4008e71",
-  "_spec": "jquery.contents-outline@0.2.1",
+  "_resolved": "https://registry.npmjs.org/jquery.contents-outline/-/jquery.contents-outline-0.2.2.tgz",
+  "_shasum": "4fbb9b9c70e0eafb33db638bb1563d50189d743a",
+  "_spec": "jquery.contents-outline@^0.2.2",
   "_where": "/Users/inc/github/wp-contents-outline",
   "author": {
     "name": "inc2734"
@@ -33,14 +32,14 @@
   "deprecated": false,
   "description": "## Get started",
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "rimraf": "^2.6.2",
-    "rollup": "^0.65.0",
-    "rollup-plugin-babel": "^4.0.2",
-    "rollup-plugin-commonjs": "^9.1.6",
-    "rollup-plugin-node-resolve": "^3.3.0",
-    "uglify-js": "^3.4.8"
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "rimraf": "^3.0.0",
+    "rollup": "^1.27.14",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "uglify-js": "^3.7.2"
   },
   "files": [
     "src",
@@ -66,5 +65,5 @@
     "prepublish": "npm run build",
     "start": "npm run build"
   },
-  "version": "0.2.1"
+  "version": "0.2.2"
 }

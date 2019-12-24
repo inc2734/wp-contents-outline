@@ -18,14 +18,13 @@
         headings: $('h2, h3, h4, h5, h6'),
         moveToBefore1stHeading: true
       }, params);
-      var allHeadings = $('h2, h3, h4, h5, h6');
       return this.each(function (i, e) {
         var wrapper = $(e);
         var co = wrapper.find('.contents-outline');
         var outlines = $('<ol />');
 
         (function () {
-          allHeadings.each(function (i, e) {
+          params.headings.each(function (i, e) {
             if (!$(e).attr('id')) {
               $(e).attr('id', 'co-index-' + i);
             }
