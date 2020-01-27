@@ -1,26 +1,26 @@
 {
-  "_from": "jquery.contents-outline@^0.2.2",
-  "_id": "jquery.contents-outline@0.2.2",
+  "_from": "jquery.contents-outline@^0.2.3",
+  "_id": "jquery.contents-outline@0.2.3",
   "_inBundle": false,
-  "_integrity": "sha512-OfFk3LKcbSfYzGs8yQiehKKUoqdu7ddot5sCsbPkfZFQfg45szOfoEgqrn80yMlSD71qOoAlH8jPUhBJIOiabg==",
+  "_integrity": "sha512-Umv6kHGVzkqk2iab8CzCFzfQ5p+AsdaBD4s0jZ7L/j25ftuD59ss/Auv96LbRQBaFOmF6J/OLAr7D5gcOjuYbA==",
   "_location": "/jquery.contents-outline",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "jquery.contents-outline@^0.2.2",
+    "raw": "jquery.contents-outline@^0.2.3",
     "name": "jquery.contents-outline",
     "escapedName": "jquery.contents-outline",
-    "rawSpec": "^0.2.2",
+    "rawSpec": "^0.2.3",
     "saveSpec": null,
-    "fetchSpec": "^0.2.2"
+    "fetchSpec": "^0.2.3"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/jquery.contents-outline/-/jquery.contents-outline-0.2.2.tgz",
-  "_shasum": "4fbb9b9c70e0eafb33db638bb1563d50189d743a",
-  "_spec": "jquery.contents-outline@^0.2.2",
+  "_resolved": "https://registry.npmjs.org/jquery.contents-outline/-/jquery.contents-outline-0.2.3.tgz",
+  "_shasum": "1b70de8377e620bebdece718530678ef6137d807",
+  "_spec": "jquery.contents-outline@^0.2.3",
   "_where": "/Users/inc/github/wp-contents-outline",
   "author": {
     "name": "inc2734"
@@ -32,14 +32,14 @@
   "deprecated": false,
   "description": "## Get started",
   "devDependencies": {
-    "@babel/core": "^7.7.7",
-    "@babel/preset-env": "^7.7.7",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "cpy-cli": "^3.0.0",
+    "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.0",
-    "rollup": "^1.27.14",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "uglify-js": "^3.7.2"
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   },
   "files": [
     "src",
@@ -58,12 +58,11 @@
   },
   "scripts": {
     "build": "npm run js",
-    "cleanup:js": "rimraf dist && mkdir -p dist",
-    "js": "npm run cleanup:js && npm run js:rollup && npm run minify:js",
-    "js:rollup": "rollup src/jquery.contents-outline.js -f=iife -c=rollup.config.js --dir dist --experimentalCodeSplitting",
-    "minify:js": "uglifyjs dist/jquery.contents-outline.js -o dist/jquery.contents-outline.min.js -mc",
+    "clean:js": "rimraf dist && mkdir -p dist",
+    "js": "npm-run-all -s clean:js js:build",
+    "js:build": "webpack src/jquery.contents-outline.js -o dist/jquery.contents-outline.min.js --config webpack.config.js",
     "prepublish": "npm run build",
     "start": "npm run build"
   },
-  "version": "0.2.2"
+  "version": "0.2.3"
 }
