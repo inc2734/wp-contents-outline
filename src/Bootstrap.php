@@ -36,27 +36,20 @@ class Bootstrap {
 	 * @return void
 	 */
 	public function _wp_enqueue_scripts() {
-		$relative_path = '/vendor/inc2734/wp-contents-outline/src/assets/packages/jquery.contents-outline/dist/jquery.contents-outline.min.js';
-		$src  = get_template_directory_uri() . $relative_path;
-		$path = get_template_directory() . $relative_path;
-
 		wp_enqueue_script(
 			'jquery.contents-outline',
-			$src,
+			get_template_directory_uri() . '/vendor/inc2734/wp-contents-outline/src/assets/packages/jquery.contents-outline/dist/jquery.contents-outline.min.js',
 			[ 'jquery' ],
-			filemtime( $path ),
+			filemtime( get_template_directory() . '/vendor/inc2734/wp-contents-outline/src/assets/packages/jquery.contents-outline/dist/jquery.contents-outline.min.js' ),
 			true
 		);
 
-		$relative_path = '/vendor/inc2734/wp-contents-outline/src/assets/js/app.min.js';
-		$src  = get_template_directory_uri() . $relative_path;
-		$path = get_template_directory() . $relative_path;
-
+		$asset = include( get_template_directory() . '/vendor/inc2734/wp-contents-outline/src/assets/js/app.asset.php' );
 		wp_enqueue_script(
 			'wp-contents-outline',
-			$src,
-			[ 'jquery.contents-outline' ],
-			filemtime( $path ),
+			get_template_directory_uri() . '/vendor/inc2734/wp-contents-outline/src/assets/js/app.js',
+			array_merge( $asset['dependencies'], [ 'jquery.contents-outline' ] ),
+			filemtime( get_template_directory() . '/vendor/inc2734/wp-contents-outline/src/assets/js/app.js' ),
 			true
 		);
 	}
