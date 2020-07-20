@@ -1,13 +1,11 @@
 {
   "author": "inc2734",
   "license": "GPL-2.0+",
-  "dependencies": {
-    "jquery.contents-outline": "^0.2.5"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
-    "@inc2734/for-each-html-nodes": "^0.4.0",
+    "@inc2734/contents-outline": "0.0.1",
     "@wordpress/browserslist-config": "^2.6.0",
     "@wordpress/scripts": "^7.2.0",
     "babel-loader": "^8.1.0",
@@ -19,8 +17,9 @@
   },
   "scripts": {
     "clean:js": "rimraf src/assets/js",
-    "packages:jquery.contents-outline": "cpy 'jquery.contents-outline/**' '../src/assets/packages' --cwd=node_modules --parents",
-    "packages": "npm-run-all -p packages:*",
+    "clean:packages": "rimraf src/assets/packages",
+    "packages:@inc2734/contents-outline": "cpy '@inc2734/contents-outline/**' '../src/assets/packages' --cwd=node_modules --parents",
+    "packages": "npm run clean:packages && npm-run-all -p packages:*",
     "js:app": "wp-scripts build src/src/js/app.js --output-path src/assets/js",
     "js": "npm run clean:js && npm-run-all -p js:*",
     "start": "npm run build",

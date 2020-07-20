@@ -1,17 +1,35 @@
-'use strict';
-
-import $ from 'jquery';
-
 export const wpContentsOutline = (wrapper) => {
   const post_class = wrapper.getAttribute('data-wpco-post-class');
-  const selector   = wrapper.getAttribute('data-wpco-selector');
-  const headings   = wrapper.getAttribute('data-wpco-headings');
-  const move       = 'true' === wrapper.getAttribute('data-wpco-move') ? true : false;
+  const post = document.querySelector(post_class);
+  if (! post) {
+    return;
+  }
 
-  $(wrapper).contentsOutline(
+  const selector = wrapper.getAttribute('data-wpco-selector');
+  const contents = post.querySelectorAll(selector);
+  if (1 > contents.length) {
+    return;
+  }
+
+  const targetHeadings = [];
+  const headings = wrapper.getAttribute('data-wpco-headings').split(',').map((tagName) => tagName.trim());
+  [].slice.call(contents).forEach(
+    (content) => {
+      [].slice.call(content.children).forEach(
+        (child) => {
+          if (-1 !== headings.indexOf(child.tagName.toLowerCase())) {
+            targetHeadings.push(child);
+          }
+        }
+      )
+    }
+  );
+
+  new ContentsOutline(
+    wrapper,
     {
-      headings: $(post_class).find(selector).children(headings),
-      moveToBefore1stHeading: move
+      headings: targetHeadings,
+      moveToBefore1stHeading: 'true' === wrapper.getAttribute('data-wpco-move'),
     }
   );
 };
