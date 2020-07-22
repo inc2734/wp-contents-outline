@@ -1,27 +1,27 @@
 {
-  "_from": "@inc2734/contents-outline@0.0.1",
-  "_id": "@inc2734/contents-outline@0.0.1",
+  "_from": "@inc2734/contents-outline@0.0.2",
+  "_id": "@inc2734/contents-outline@0.0.2",
   "_inBundle": false,
-  "_integrity": "sha512-9u6CwY7mUBH6YfdhjssbyLT1e6/Jmo2mu9Kx8TYe8v9zZBrjh6v9kBCf5b+UOi0ys8cr7yo8tJhktHAuFNEthg==",
+  "_integrity": "sha512-UhUIabXb+qVGqBPqP8WeJLwjtWy6nBGOH6PQcH4u0UvzkMtGxxZwfT33UzNgbRnxo82jE+PbW0F0vP8uvaalvA==",
   "_location": "/@inc2734/contents-outline",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@inc2734/contents-outline@0.0.1",
+    "raw": "@inc2734/contents-outline@0.0.2",
     "name": "@inc2734/contents-outline",
     "escapedName": "@inc2734%2fcontents-outline",
     "scope": "@inc2734",
-    "rawSpec": "0.0.1",
+    "rawSpec": "0.0.2",
     "saveSpec": null,
-    "fetchSpec": "0.0.1"
+    "fetchSpec": "0.0.2"
   },
   "_requiredBy": [
     "#DEV:/"
   ],
-  "_resolved": "https://registry.npmjs.org/@inc2734/contents-outline/-/contents-outline-0.0.1.tgz",
-  "_shasum": "67a4b77a0df100e7801d471fae783589fc1494e7",
-  "_spec": "@inc2734/contents-outline@0.0.1",
+  "_resolved": "https://registry.npmjs.org/@inc2734/contents-outline/-/contents-outline-0.0.2.tgz",
+  "_shasum": "ed9d9c95269758efba23c58cf9adcf91964a494b",
+  "_spec": "@inc2734/contents-outline@0.0.2",
   "_where": "/Users/inc/github/wp-contents-outline",
   "author": {
     "name": "inc2734"
@@ -68,5 +68,5 @@
     "prepublish": "npm run build",
     "start": "npm run build"
   },
-  "version": "0.0.1"
+  "version": "0.0.2"
 }
