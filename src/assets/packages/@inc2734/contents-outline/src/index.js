@@ -52,12 +52,22 @@ const newContentsOutline = (target, options) => {
     }
   );
 
-  const getHeadingLevel = (heading) => parseInt(heading.tagName.replace('H', ''));
+  const getHeadingLevel = (heading) => !! heading ? parseInt(heading.tagName.replace('H', '')) : undefined;
 
-  let hi = 0;
-  let beforeHeading = [].slice.call(options.headings).slice(1)[0];
-  let parents = [ document.createElement('ol') ];
-  let parentsHeadingLevel = [ getHeadingLevel(beforeHeading) ];
+  let level = 0;
+  let beforeHeading = undefined;
+  let roots = [
+    {
+      level: undefined,
+      tree: document.createElement('ol'),
+    }
+  ];
+
+  const resetRoots = () => {
+    const rootsZero = roots[0];
+    roots = [];
+    roots[0] = rootsZero;
+  };
 
   const createItem = (heading) => {
     const li = document.createElement('li');
@@ -69,44 +79,52 @@ const newContentsOutline = (target, options) => {
   };
 
   const createTree = (heading) => {
+    const tree = document.createElement('ol');
+    tree.appendChild(createItem(heading));
+    return tree;
+  };
+
+  const addToTree = (heading) => {
+    if (!! roots[ level ]) {
+      roots[ level ]['tree'].appendChild(createItem(heading));
+    } else {
+      roots[ level ] = {};
+      roots[ level ]['tree'] = createTree(heading);
+      const parentLastLi = [].slice.call(roots[ level - 1 ]['tree'].children).slice(-1)[0];
+      parentLastLi.appendChild(roots[ level ]['tree']);
+    }
+
+    roots[ level ]['level'] = getHeadingLevel(heading);
+  };
+
+  const add = (heading) => {
     const beforeHeadingLevel = getHeadingLevel(beforeHeading);
     const headingLevel       = getHeadingLevel(heading);
 
-    if (beforeHeadingLevel < headingLevel) {
-      hi ++;
-    } else if (beforeHeadingLevel > headingLevel) {
-      const diff = beforeHeadingLevel - headingLevel;
-      hi = 0 > hi - diff ? 0 : hi - diff;
-      if (parentsHeadingLevel[ hi ] < headingLevel) {
-        hi ++;
-      }
+    const up   = beforeHeadingLevel > headingLevel;
+    const down = beforeHeadingLevel < headingLevel;
+
+    if (down) {
+      level ++;
+    } else if (up) {
+      level = level - beforeHeadingLevel - headingLevel;
+      level = 0 > level ? 0 : level;
+      level = roots[ level ]['level'] < headingLevel ? level + 1 : level;
+      resetRoots();
     }
 
-    if (!! parents[ hi ] && (0 === hi || parentsHeadingLevel[ hi ] < headingLevel)) {
-      parents[ hi ].appendChild(createItem(heading));
-    } else {
-      const ol = document.createElement('ol');
-      ol.appendChild(createItem(heading));
-      const lastLi = [].slice.call(parents[ hi - 1 ].children).slice(-1)[0];
-      lastLi.appendChild(ol);
-      parents[ hi ] = ol;
-    }
-
-    if (! parentsHeadingLevel[ hi ] || parentsHeadingLevel[ hi ] > headingLevel) {
-      parentsHeadingLevel[ hi ] = headingLevel;
-    }
-
+    addToTree(heading);
     beforeHeading = heading;
   };
 
-  [].slice.call(options.headings).forEach((heading) => createTree(heading));
+  [].slice.call(options.headings).forEach((heading) => add(heading));
 
   if (true === options.moveToBefore1stHeading) {
     const firstHeading = options.headings[0];
     firstHeading.parentNode.insertBefore(target, firstHeading);
   }
 
-  co.appendChild(parents[ 0 ]);
+  co.appendChild(roots[0]['tree']);
   target.setAttribute('aria-hidden', 'false');
   target.setAttribute('data-initialized', 'true');
 };
