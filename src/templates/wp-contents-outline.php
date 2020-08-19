@@ -24,7 +24,10 @@ if ( empty( $attributes['headings'] ) ) {
 	?>
 
 	<div class="wpco">
-		<h2 class="wpco__title"><?php esc_html_e( 'Outline', 'inc2734-wp-contents-outline' ); ?></h2>
+		<?php if ( $attributes['title'] ) : ?>
+			<h2 class="wpco__title"><?php echo esc_html( $attributes['title'] ); ?></h2>
+		<?php endif; ?>
+
 		<div class="contents-outline"></div>
 	</div>
 </div>

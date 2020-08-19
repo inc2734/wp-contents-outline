@@ -22,6 +22,7 @@ add_shortcode(
 
 		$attributes = shortcode_atts(
 			[
+				'title'                      => __( 'Outline', 'inc2734-wp-contents-outline' ),
 				'selector'                   => null,
 				'headings'                   => 'h2,h3,h4,h5,h6',
 				'post_id'                    => get_the_ID(),
