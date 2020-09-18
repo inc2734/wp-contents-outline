@@ -5,25 +5,32 @@ export const wpContentsOutline = (wrapper) => {
     return;
   }
 
-  const selector = wrapper.getAttribute('data-wpco-selector');
-  const contents = post.querySelectorAll(selector);
-  if (1 > contents.length) {
-    return;
-  }
+  const selectors = wrapper.getAttribute('data-wpco-selector').split(',').map((selector) => selector.trim());
+  const headings  = wrapper.getAttribute('data-wpco-headings').split(',').map((heading) => heading.trim());
 
   const targetHeadings = [];
-  const headings = wrapper.getAttribute('data-wpco-headings').split(',').map((tagName) => tagName.trim());
-  [].slice.call(contents).forEach(
-    (content) => {
-      [].slice.call(content.children).forEach(
-        (child) => {
-          if (-1 !== headings.indexOf(child.tagName.toLowerCase())) {
-            targetHeadings.push(child);
+  selectors.forEach(
+    (selector) => {
+      headings.forEach(
+        (heading) => {
+          const targetSelector = `${selector} > ${heading}`;
+          const list = post.querySelectorAll(targetSelector);
+          if (1 > list.length) {
+            return;
           }
+
+          [].slice.call(list).forEach(
+            (heading) => {
+              targetHeadings.push(heading);
+            }
+          );
         }
       )
     }
   );
+  if (1 > targetHeadings.length) {
+    return;
+  }
 
   new ContentsOutline(
     wrapper,
