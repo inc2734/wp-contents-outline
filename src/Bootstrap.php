@@ -9,21 +9,13 @@ namespace Inc2734\WP_Contents_Outline;
 
 class Bootstrap {
 
+	/**
+	 * Constructor
+	 */
 	public function __construct() {
 		load_textdomain( 'inc2734-wp-contents-outline', __DIR__ . '/languages/' . get_locale() . '.mo' );
 
-		$includes = array(
-			'/shortcode',
-		);
-		foreach ( $includes as $include ) {
-			foreach ( glob( __DIR__ . $include . '/*.php' ) as $file ) {
-				if ( false !== strpos( basename( $file ), '_' ) ) {
-					continue;
-				}
-
-				require_once( $file );
-			}
-		}
+		include_once( __DIR__ . '/shortcode/wp-contents-outline.php' );
 
 		if ( apply_filters( 'inc2734_wp_contents_outline_enqueue_js', true ) ) {
 			add_action( 'wp_enqueue_scripts', [ $this, '_wp_enqueue_scripts' ] );

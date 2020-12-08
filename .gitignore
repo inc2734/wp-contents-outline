@@ -1,6 +1,5 @@
 .DS_Store
 vendor/
-node_modules/
 composer.lock
-yarn.lock
+node_modules/
 package-lock.json

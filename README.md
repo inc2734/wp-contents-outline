@@ -1,6 +1,6 @@
 # WP Contents Outline
 
-[![Build Status](https://travis-ci.com/inc2734/wp-contents-outline.svg?branch=master)](https://travis-ci.com/inc2734/wp-contents-outline)
+![CI](https://github.com/inc2734/wp-contents-outline/workflows/CI/badge.svg)
 [![Latest Stable Version](https://poser.pugx.org/inc2734/wp-contents-outline/v/stable)](https://packagist.org/packages/inc2734/wp-contents-outline)
 [![License](https://poser.pugx.org/inc2734/wp-contents-outline/license)](https://packagist.org/packages/inc2734/wp-contents-outline)
 
