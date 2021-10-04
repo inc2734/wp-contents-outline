@@ -1,9 +1,10 @@
+.github export-ignore
+.browserlistrc export-ignore
 .editorconfig export-ignore
 .gitattributes export-ignore
 .gitignore export-ignore
 .phpcs.xml.dist export-ignore
 .phpunit.xml.dist export-ignore
-.github export-ignore
 .wp-env.json export-ignore
 postcss.config.js export-ignore
 tests export-ignore

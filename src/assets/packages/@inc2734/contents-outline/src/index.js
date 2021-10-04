@@ -25,6 +25,7 @@ const newContentsOutline = (target, options) => {
 
   if (1 > options.headings.length) {
     target.parentNode.removeChild(target);
+    return;
   }
 
   options.headings.sort((a, b) => {
@@ -124,6 +125,34 @@ const newContentsOutline = (target, options) => {
     firstHeading.parentNode.insertBefore(target, firstHeading);
   }
 
+  if ('function' === typeof IntersectionObserver) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const currentItem = target.querySelector('[data-is-current="true"]');
+            if (!! currentItem) {
+              currentItem.removeAttribute('data-is-current');
+            }
+            const newCurrentLink = target.querySelector(`a[href='#${entry.target.id}']`);
+            if (!! newCurrentLink) {
+              newCurrentLink.parentElement.setAttribute('data-is-current', 'true');
+            }
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: '-50% 0px',
+        threshold: 0,
+      }
+    );
+
+    [].slice.call(options.headings).forEach((heading) => {
+      observer.observe(heading);
+    });
+  }
+
   co.appendChild(roots[0]['tree']);
   target.setAttribute('aria-hidden', 'false');
   target.setAttribute('data-initialized', 'true');
@@ -144,17 +173,17 @@ export default function ContentsOutline(target, args = {}) {
 
   if ('string' === typeof target) {
     if (target.match(/^#/)) {
-      const slider = document.querySelector(target);
-      if (! slider) {
+      const cos = document.querySelector(target);
+      if (! cos) {
         return;
       }
-      return newContentsOutline(slider, options);
+      return newContentsOutline(cos, options);
     } else {
-      const cos = document.querySelectorAll(target);
-      if (1 > cos.length) {
+      const coses = document.querySelectorAll(target);
+      if (1 > coses.length) {
         return;
       }
-      return newContentsOutlines(cos, options);
+      return newContentsOutlines(coses, options);
     }
   } else if (true === target instanceof NodeList) {
     return newContentsOutlines(target, options);
