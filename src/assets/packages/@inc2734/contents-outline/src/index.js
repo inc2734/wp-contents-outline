@@ -74,7 +74,7 @@ const newContentsOutline = (target, options) => {
     const li = document.createElement('li');
     const a = document.createElement('a');
     a.textContent = heading.textContent.replace(/[\n\r]/g, '');
-    a.setAttribute('href', `#${ heading.getAttribute('id') }`);
+    a.setAttribute('href', `#${ encodeURI(heading.getAttribute('id')) }`);
     li.appendChild(a);
     return li;
   };
@@ -134,7 +134,7 @@ const newContentsOutline = (target, options) => {
             if (!! currentItem) {
               currentItem.removeAttribute('data-is-current');
             }
-            const newCurrentLink = target.querySelector(`a[href='#${entry.target.id}']`);
+            const newCurrentLink = target.querySelector(`a[href='#${ encodeURI(entry.target.id) }']`);
             if (!! newCurrentLink) {
               newCurrentLink.parentElement.setAttribute('data-is-current', 'true');
             }
