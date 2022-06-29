@@ -23,12 +23,38 @@ const newContentsOutline = (target, options) => {
     return;
   }
 
-  if (1 > options.headings.length) {
+  const newHeadings = options.headings.filter(
+    (heading) => {
+      let element = heading;
+      let isParentsDisplayNone = false;
+      let isParentsVisibilityHidden = false;
+      while (true) {
+        if (! element.parentNode || ['#document', 'HTML', 'BODY'].includes(element.parentNode.nodeName)) {
+          break;
+        }
+        isParentsDisplayNone = 'none' === window.getComputedStyle(element.parentNode).getPropertyValue('display');
+        isParentsVisibilityHidden = 'hidden' === window.getComputedStyle(element.parentNode).getPropertyValue('visibility');
+        if (isParentsDisplayNone || isParentsVisibilityHidden) {
+          break;
+        }
+        element = element.parentNode;
+      }
+
+      return (
+        'none' !== window.getComputedStyle(heading).getPropertyValue('display')
+        && 'hidden' !== window.getComputedStyle(heading).getPropertyValue('visibility')
+        && ! isParentsDisplayNone
+        && ! isParentsVisibilityHidden
+      );
+    }
+  );
+
+  if (1 > newHeadings.length) {
     target.parentNode.removeChild(target);
     return;
   }
 
-  options.headings.sort((a, b) => {
+  newHeadings.sort((a, b) => {
     const aTop = a.getBoundingClientRect().top;
     const bTop = b.getBoundingClientRect().top;
     return aTop - bTop;
@@ -40,7 +66,7 @@ const newContentsOutline = (target, options) => {
   };
 
   let bulk = 0;
-  [].slice.call(options.headings).forEach(
+  [].slice.call(newHeadings).forEach(
     (heading) => {
       if (heading.getAttribute('id')) {
         return;
@@ -118,10 +144,10 @@ const newContentsOutline = (target, options) => {
     beforeHeading = heading;
   };
 
-  [].slice.call(options.headings).forEach((heading) => add(heading));
+  [].slice.call(newHeadings).forEach((heading) => add(heading));
 
   if (true === options.moveToBefore1stHeading) {
-    const firstHeading = options.headings[0];
+    const firstHeading = newHeadings[0];
     firstHeading.parentNode.insertBefore(target, firstHeading);
   }
 
@@ -148,7 +174,7 @@ const newContentsOutline = (target, options) => {
       }
     );
 
-    [].slice.call(options.headings).forEach((heading) => {
+    [].slice.call(newHeadings).forEach((heading) => {
       observer.observe(heading);
     });
   }
