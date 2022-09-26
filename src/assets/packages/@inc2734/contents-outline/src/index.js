@@ -81,21 +81,6 @@ const newContentsOutline = (target, options) => {
 
   const getHeadingLevel = (heading) => !! heading ? parseInt(heading.tagName.replace('H', '')) : undefined;
 
-  let level = 0;
-  let beforeHeading = undefined;
-  let roots = [
-    {
-      level: undefined,
-      tree: document.createElement('ol'),
-    }
-  ];
-
-  const resetRoots = () => {
-    const rootsZero = roots[0];
-    roots = [];
-    roots[0] = rootsZero;
-  };
-
   const createItem = (heading) => {
     const li = document.createElement('li');
     const a = document.createElement('a');
@@ -105,48 +90,59 @@ const newContentsOutline = (target, options) => {
     return li;
   };
 
-  const createTree = (heading) => {
-    const tree = document.createElement('ol');
-    tree.appendChild(createItem(heading));
-    return tree;
+  const createTree = () => {
+    return document.createElement('ol');
   };
 
-  const addToTree = (heading) => {
-    if (!! roots[ level ]) {
-      roots[ level ]['tree'].appendChild(createItem(heading));
-    } else {
-      roots[ level ] = {};
-      roots[ level ]['tree'] = createTree(heading);
-      const parentLastLi = [].slice.call(roots[ level - 1 ]['tree'].children).slice(-1)[0];
-      parentLastLi.appendChild(roots[ level ]['tree']);
+  const getTarget = (obj, hierarchical) => {
+    let propPath = '';
+    for (let i = 0; i < hierarchical; i++) {
+      propPath += `.lastElementChild.lastElementChild`;
+    }
+    propPath = propPath.slice(1);
+
+    const arr = propPath.split('.');
+    while (arr.length) {
+      obj = obj[ arr.shift() ];
     }
 
-    roots[ level ]['level'] = getHeadingLevel(heading);
+    return obj;
   };
 
-  const add = (heading) => {
-    const beforeHeadingLevel = getHeadingLevel(beforeHeading);
-    const headingLevel       = getHeadingLevel(heading);
+  const tree = document.createElement('ol');
+  let beforeHeadingLevel = undefined;
+  let hierarchical = 0;
+  let isOverDigging = false;
 
-    const up   = beforeHeadingLevel > headingLevel;
-    const down = beforeHeadingLevel < headingLevel;
+  newHeadings.forEach((heading) => {
+    const level = getHeadingLevel(heading);
 
-    if (down) {
-      level ++;
-    } else if (up) {
-      level = level - beforeHeadingLevel - headingLevel;
-      level = 0 > level ? 0 : level;
-      level = roots[ level ]['level'] < headingLevel ? level + 1 : level;
-      resetRoots();
+    if (level < beforeHeadingLevel) {
+      if (! isOverDigging) {
+        hierarchical = hierarchical + level - beforeHeadingLevel;
+      }
+      hierarchical = hierarchical < 0 ? 0 : hierarchical;
+      isOverDigging = false;
+    } else if (level > beforeHeadingLevel) {
+      if (1 < level - beforeHeadingLevel) {
+        isOverDigging = true;
+      }
+      hierarchical ++;
     }
 
-    addToTree(heading);
-    beforeHeading = heading;
-  };
+    if (0 === hierarchical) {
+      tree.appendChild(createItem(heading));
+    } else if (0 < hierarchical) {
+      if ('OL' !== getTarget(tree, hierarchical).tagName) {
+        getTarget(tree, hierarchical).parentElement.appendChild(createTree());
+      }
+      getTarget(tree, hierarchical).appendChild(createItem(heading));
+    }
 
-  [].slice.call(newHeadings).forEach((heading) => add(heading));
+    beforeHeadingLevel = level;
+  });
 
-  if (true === options.moveToBefore1stHeading) {
+ if (true === options.moveToBefore1stHeading) {
     const firstHeading = newHeadings[0];
     firstHeading.parentNode.insertBefore(target, firstHeading);
   }
@@ -179,7 +175,7 @@ const newContentsOutline = (target, options) => {
     });
   }
 
-  co.appendChild(roots[0]['tree']);
+  co.appendChild(tree);
   target.setAttribute('aria-hidden', 'false');
   target.setAttribute('data-initialized', 'true');
 };

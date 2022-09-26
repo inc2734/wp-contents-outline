@@ -4,14 +4,13 @@
 
 ### Install
 ```
-$ yarn add @inc2734/contents-outline
+$ npm install --save-dev @inc2734/contents-outline
 ```
 
 ### Load scripts
 
 ```
 import ContentsOutline from '@inc2734/contents-outline';
-
 
 new ContentsOutline(
   '.contents-outline-container',
