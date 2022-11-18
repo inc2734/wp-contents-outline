@@ -5,6 +5,16 @@
  * @license GPL-2.0+
  */
 
+$attributes = array_merge(
+	[
+		'selector'                   => '',
+		'headings'                   => '',
+		'move_to_before_1st_heading' => 'false',
+		'move_to'                    => '',
+	],
+	$attributes,
+);
+
 if ( empty( $attributes['headings'] ) ) {
 	return;
 }
@@ -18,6 +28,7 @@ if ( empty( $attributes['headings'] ) ) {
 	data-wpco-selector="<?php echo esc_attr( $attributes['selector'] ); ?>"
 	data-wpco-headings="<?php echo esc_attr( $attributes['headings'] ); ?>"
 	data-wpco-move="<?php echo esc_attr( $attributes['move_to_before_1st_heading'] ); ?>"
+	data-wpco-move-to="<?php echo esc_attr( $attributes['move_to'] ); ?>"
 	>
 	<?php
 	do_action( 'inc2734_wp_contents_outline_before', $attributes );

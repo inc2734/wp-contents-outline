@@ -17,6 +17,7 @@ new ContentsOutline(
   {
     headings : document.querySelectorAll('h2, h3, h4, h5, h6'), // Optional
     moveToBefore1stHeading: true, // Optional
+    moveTo: document.querySelectorAll('entry-content'), // Optional
   }
 );
 ```

@@ -109,6 +109,28 @@ const newContentsOutline = (target, options) => {
     return obj;
   };
 
+  const getReferenceElement = (_target, moveTo = []) => {
+    let t;
+
+    const has = [].slice.call(moveTo).some( ( w ) => {
+      const match = _target.parentNode === w;
+      if ( match ) {
+        t = _target.parentNode;
+      }
+      return match;
+    } );
+
+    if ( has ) {
+      return t;
+    }
+
+    if (!! _target.parentNode) {
+      return getReferenceElement(_target.parentNode, moveTo);
+    }
+
+    return _target;
+  };
+
   const tree = document.createElement('ol');
   let beforeHeadingLevel = undefined;
   let hierarchical = 0;
@@ -142,9 +164,15 @@ const newContentsOutline = (target, options) => {
     beforeHeadingLevel = level;
   });
 
- if (true === options.moveToBefore1stHeading) {
+  if (true === options.moveToBefore1stHeading) {
     const firstHeading = newHeadings[0];
-    firstHeading.parentNode.insertBefore(target, firstHeading);
+    const moveTo = 0 < options.moveTo.length ? options.moveTo : undefined;
+    if ( !! moveTo ) {
+      const t = getReferenceElement(firstHeading, moveTo);
+      t.parentNode.insertBefore(target, t);
+    } else {
+      firstHeading.parentNode.insertBefore(target, firstHeading);
+    }
   }
 
   if ('function' === typeof IntersectionObserver) {
@@ -184,6 +212,7 @@ export default function ContentsOutline(target, args = {}) {
   const defaultOptions = {
     headings: document.querySelectorAll('h2, h3, h4, h5, h6'),
     moveToBefore1stHeading: true,
+    moveTo: undefined,
   };
 
   const options = {};

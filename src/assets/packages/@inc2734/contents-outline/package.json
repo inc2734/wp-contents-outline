@@ -1,27 +1,27 @@
 {
-  "_from": "@inc2734/contents-outline@0.1.3",
-  "_id": "@inc2734/contents-outline@0.1.3",
+  "_from": "@inc2734/contents-outline@0.1.4",
+  "_id": "@inc2734/contents-outline@0.1.4",
   "_inBundle": false,
-  "_integrity": "sha512-XdawCE7JlZuXFegbDaVSfmSbjPSRBZ5dw5ccN2U51SVayz7TjC4yoT/CcBbT49iJTu+UUPRxNPHYtHdHUG5x8w==",
+  "_integrity": "sha512-PMMPgKiLobl96hEDDTV5JkpJAKOYgIQej27G8hw0mS6gVzHE7zbI9wLhZNNIgw6lbwdM4DI5b16VMOFbP+nPrA==",
   "_location": "/@inc2734/contents-outline",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@inc2734/contents-outline@0.1.3",
+    "raw": "@inc2734/contents-outline@0.1.4",
     "name": "@inc2734/contents-outline",
     "escapedName": "@inc2734%2fcontents-outline",
     "scope": "@inc2734",
-    "rawSpec": "0.1.3",
+    "rawSpec": "0.1.4",
     "saveSpec": null,
-    "fetchSpec": "0.1.3"
+    "fetchSpec": "0.1.4"
   },
   "_requiredBy": [
     "#DEV:/"
   ],
-  "_resolved": "https://registry.npmjs.org/@inc2734/contents-outline/-/contents-outline-0.1.3.tgz",
-  "_shasum": "ed6918d8c383c01066d5f83642c7518f8bb74668",
-  "_spec": "@inc2734/contents-outline@0.1.3",
+  "_resolved": "https://registry.npmjs.org/@inc2734/contents-outline/-/contents-outline-0.1.4.tgz",
+  "_shasum": "a7b4aee4cc2bdab6c3fe1797417c8c26dedb1a30",
+  "_spec": "@inc2734/contents-outline@0.1.4",
   "_where": "/Users/inc2734/Dropbox/github/wp-contents-outline",
   "author": {
     "name": "inc2734"
@@ -34,17 +34,17 @@
   "deprecated": false,
   "description": "## Get started",
   "devDependencies": {
-    "@babel/core": "^7.19.1",
-    "@babel/preset-env": "^7.19.1",
-    "@rollup/plugin-babel": "^5.3.1",
-    "@rollup/plugin-node-resolve": "^14.1.0",
-    "@wordpress/browserslist-config": "^5.1.0",
-    "autoprefixer": "^10.4.12",
+    "@babel/core": "^7.20.2",
+    "@babel/preset-env": "^7.20.2",
+    "@rollup/plugin-babel": "^6.0.2",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@wordpress/browserslist-config": "^5.5.0",
+    "autoprefixer": "^10.4.13",
     "browserslist": "^4.21.4",
     "cpy-cli": "^4.2.0",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2",
-    "rollup": "^2.79.1",
+    "rollup": "^3.3.0",
     "rollup-plugin-uglify": "^6.0.4"
   },
   "files": [
@@ -69,5 +69,6 @@
     "prepublish": "npm run build",
     "start": "npm run build"
   },
-  "version": "0.1.3"
+  "type": "module",
+  "version": "0.1.4"
 }

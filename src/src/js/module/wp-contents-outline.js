@@ -5,8 +5,12 @@ export const wpContentsOutline = (wrapper) => {
     return;
   }
 
-  const selectors = wrapper.getAttribute('data-wpco-selector').split(',').map((selector) => selector.trim());
-  const headings  = wrapper.getAttribute('data-wpco-headings').split(',').map((heading) => heading.trim());
+  const selectors = wrapper.getAttribute('data-wpco-selector').split(',').map((selector) => selector.trim()).filter(Boolean);
+  const headings = wrapper.getAttribute('data-wpco-headings').split(',').map((heading) => heading.trim()).filter(Boolean);
+  const moveToBefore1stHeading = 'true' === wrapper.getAttribute('data-wpco-move');
+  const moveTo = moveToBefore1stHeading
+    ? wrapper.getAttribute('data-wpco-move-to').split(',').map((moveTo) => moveTo.trim()).filter(Boolean)
+    : undefined;
 
   const targetHeadings = [];
   selectors.forEach(
@@ -32,11 +36,24 @@ export const wpContentsOutline = (wrapper) => {
     return;
   }
 
+  const targetMoveTo = [];
+  if (0 < moveTo.length) {
+    moveTo.forEach(
+      (selector) => {
+        const m = post.querySelector(selector);
+        if (!! m) {
+          targetMoveTo.push(m);
+        }
+      }
+    )
+  }
+
   new ContentsOutline(
     wrapper,
     {
       headings: targetHeadings,
-      moveToBefore1stHeading: 'true' === wrapper.getAttribute('data-wpco-move'),
+      moveToBefore1stHeading: moveToBefore1stHeading,
+      moveTo: targetMoveTo,
     }
   );
 };

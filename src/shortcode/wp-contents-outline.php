@@ -27,6 +27,7 @@ add_shortcode(
 				'headings'                   => 'h2,h3,h4,h5,h6',
 				'post_id'                    => get_the_ID(),
 				'move_to_before_1st_heading' => 'false',
+				'move_to'                    => null,
 				'id'                         => 'wpco-' . uniqid( rand() ),
 				'class'                      => null,
 			],
