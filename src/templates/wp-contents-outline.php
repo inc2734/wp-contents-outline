@@ -12,7 +12,7 @@ $attributes = array_merge(
 		'move_to_before_1st_heading' => 'false',
 		'move_to'                    => '',
 	],
-	$attributes,
+	$attributes
 );
 
 if ( empty( $attributes['headings'] ) ) {
