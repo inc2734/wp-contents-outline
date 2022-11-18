@@ -1,38 +1,20 @@
 {
-  "_from": "@inc2734/contents-outline@0.1.4",
-  "_id": "@inc2734/contents-outline@0.1.4",
-  "_inBundle": false,
-  "_integrity": "sha512-PMMPgKiLobl96hEDDTV5JkpJAKOYgIQej27G8hw0mS6gVzHE7zbI9wLhZNNIgw6lbwdM4DI5b16VMOFbP+nPrA==",
-  "_location": "/@inc2734/contents-outline",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "version",
-    "registry": true,
-    "raw": "@inc2734/contents-outline@0.1.4",
-    "name": "@inc2734/contents-outline",
-    "escapedName": "@inc2734%2fcontents-outline",
-    "scope": "@inc2734",
-    "rawSpec": "0.1.4",
-    "saveSpec": null,
-    "fetchSpec": "0.1.4"
+  "name": "@inc2734/contents-outline",
+  "version": "0.1.5",
+  "author": "inc2734",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/inc2734/contents-outline"
   },
-  "_requiredBy": [
-    "#DEV:/"
+  "type": "module",
+  "main": "src/index.js",
+  "files": [
+    "src",
+    "dist",
+    "LICENSE",
+    "README.md"
   ],
-  "_resolved": "https://registry.npmjs.org/@inc2734/contents-outline/-/contents-outline-0.1.4.tgz",
-  "_shasum": "a7b4aee4cc2bdab6c3fe1797417c8c26dedb1a30",
-  "_spec": "@inc2734/contents-outline@0.1.4",
-  "_where": "/Users/inc2734/Dropbox/github/wp-contents-outline",
-  "author": {
-    "name": "inc2734"
-  },
-  "bugs": {
-    "url": "https://github.com/inc2734/contents-outline/issues"
-  },
-  "bundleDependencies": false,
-  "dependencies": {},
-  "deprecated": false,
-  "description": "## Get started",
   "devDependencies": {
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
@@ -41,34 +23,23 @@
     "@wordpress/browserslist-config": "^5.5.0",
     "autoprefixer": "^10.4.13",
     "browserslist": "^4.21.4",
+    "rollup": "^3.3.0",
+    "rollup-plugin-uglify": "^6.0.4",
     "cpy-cli": "^4.2.0",
     "npm-run-all": "^4.1.5",
-    "rimraf": "^3.0.2",
-    "rollup": "^3.3.0",
-    "rollup-plugin-uglify": "^6.0.4"
-  },
-  "files": [
-    "src",
-    "dist",
-    "LICENSE",
-    "README.md"
-  ],
-  "homepage": "https://github.com/inc2734/contents-outline#readme",
-  "license": "MIT",
-  "main": "src/index.js",
-  "name": "@inc2734/contents-outline",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/inc2734/contents-outline.git"
+    "rimraf": "^3.0.2"
   },
   "scripts": {
-    "build": "npm run js",
-    "clean:js": "rimraf dist && mkdir -p dist",
-    "js": "npm-run-all -s clean:js js:build",
-    "js:build": "rollup -c",
     "prepublish": "npm run build",
-    "start": "npm run build"
+    "start": "npm run build",
+    "clean:js": "rimraf dist && mkdir -p dist",
+    "js:build": "rollup -c",
+    "js": "npm-run-all -s clean:js js:build",
+    "build": "npm run js"
   },
-  "type": "module",
-  "version": "0.1.4"
+  "dependencies": {}
+
+,"_resolved": "https://registry.npmjs.org/@inc2734/contents-outline/-/contents-outline-0.1.5.tgz"
+,"_integrity": "sha512-T1nBUqn8GvVMngyoqxZll2QZX3RAmlkDyTo/7j8eGO14o1nQcZ09XFnK3INgYJBlrvZDOLoKFqjS9wAwr2TD8Q=="
+,"_from": "@inc2734/contents-outline@0.1.5"
 }

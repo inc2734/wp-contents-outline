@@ -115,7 +115,7 @@ const newContentsOutline = (target, options) => {
     const has = [].slice.call(moveTo).some( ( w ) => {
       const match = _target.parentNode === w;
       if ( match ) {
-        t = _target.parentNode;
+        t = _target;
       }
       return match;
     } );

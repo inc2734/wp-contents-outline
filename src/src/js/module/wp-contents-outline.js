@@ -10,7 +10,7 @@ export const wpContentsOutline = (wrapper) => {
   const moveToBefore1stHeading = 'true' === wrapper.getAttribute('data-wpco-move');
   const moveTo = moveToBefore1stHeading
     ? wrapper.getAttribute('data-wpco-move-to').split(',').map((moveTo) => moveTo.trim()).filter(Boolean)
-    : undefined;
+    : [];
 
   const targetHeadings = [];
   selectors.forEach(
