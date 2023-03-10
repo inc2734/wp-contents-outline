@@ -16,10 +16,6 @@ use Inc2734\WP_Contents_Outline\App\View;
 add_shortcode(
 	'wp_contents_outline',
 	function( array $attributes = [] ) {
-		if ( ! is_singular() ) {
-			return;
-		}
-
 		$attributes = shortcode_atts(
 			[
 				'title'                      => __( 'Outline', 'inc2734-wp-contents-outline' ),
