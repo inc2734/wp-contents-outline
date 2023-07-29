@@ -20,10 +20,10 @@ class View {
 	 */
 	public static function render( $slug, $name, $args ) {
 		$bootstrap = new Bootstrap(
-			[
+			array(
 				'prefix' => 'inc2734_wp_contents_outline_',
 				'path'   => __DIR__ . '/../templates/',
-			]
+			)
 		);
 
 		$bootstrap->render( $slug, $name, $args );

@@ -15,9 +15,9 @@ use Inc2734\WP_Contents_Outline\App\View;
  */
 add_shortcode(
 	'wp_contents_outline',
-	function( array $attributes = [] ) {
+	function( array $attributes = array() ) {
 		$attributes = shortcode_atts(
-			[
+			array(
 				'title'                      => __( 'Outline', 'inc2734-wp-contents-outline' ),
 				'selector'                   => null,
 				'headings'                   => 'h2,h3,h4,h5,h6',
@@ -26,7 +26,7 @@ add_shortcode(
 				'move_to'                    => null,
 				'id'                         => 'wpco-' . uniqid( rand() ),
 				'class'                      => null,
-			],
+			),
 			$attributes
 		);
 
@@ -49,12 +49,12 @@ add_shortcode(
 		View::render(
 			'wp-contents-outline',
 			null,
-			[
+			array(
 				'wpco_id'    => $attributes['id'],
 				'wpco_class' => $attributes['class'],
 				'post_class' => $post_class,
 				'attributes' => $attributes,
-			]
+			)
 		);
 
 		return ob_get_clean();

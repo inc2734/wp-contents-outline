@@ -6,12 +6,12 @@
  */
 
 $attributes = array_merge(
-	[
+	array(
 		'selector'                   => '',
 		'headings'                   => '',
 		'move_to_before_1st_heading' => 'false',
 		'move_to'                    => '',
-	],
+	),
 	$attributes
 );
 
