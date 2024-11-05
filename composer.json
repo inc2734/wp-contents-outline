@@ -1,34 +1,35 @@
 {
-  "name": "inc2734/wp-contents-outline",
-  "description": "A library for WordPress. This adds contents outline of the post.",
-  "license": "GPL-2.0-or-later",
-  "require": {
-    "php": ">=7.4",
-    "inc2734/wp-plugin-view-controller": "^1.1"
-  },
-  "require-dev": {
-    "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-    "wp-coding-standards/wpcs": "^2.3",
-    "yoast/phpunit-polyfills": "^1.0"
-  },
-  "authors": [
-    {
-      "name": "Takashi Kitajima",
-      "email": "inc@2inc.org"
-    }
-  ],
-  "autoload": {
-    "psr-4" : {
-      "Inc2734\\WP_Contents_Outline\\" : "src"
-    }
-  },
-  "scripts": {
-    "lint": "./vendor/squizlabs/php_codesniffer/bin/phpcs",
-    "format": "./vendor/squizlabs/php_codesniffer/bin/phpcbf"
-  },
-  "config": {
-    "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
-    }
-  }
+	"name": "inc2734/wp-contents-outline",
+	"description": "A library for WordPress. This adds contents outline of the post.",
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"php": ">=7.4",
+		"inc2734/wp-plugin-view-controller": "^1.1"
+	},
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^3.1",
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+		"phpcompatibility/phpcompatibility-wp": "*",
+		"yoast/phpunit-polyfills": "^2.0"
+	},
+	"authors": [
+		{
+			"name": "Takashi Kitajima",
+			"email": "inc@2inc.org"
+		}
+	],
+	"autoload": {
+		"psr-4" : {
+			"Inc2734\\WP_Contents_Outline\\" : "src"
+		}
+	},
+	"scripts": {
+		"lint": "phpcs --standard=.phpcs.xml.dist",
+		"format": "phpcbf --standard=.phpcs.xml.dist --report-summary --report-source"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	}
 }

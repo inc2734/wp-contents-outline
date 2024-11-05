@@ -20,7 +20,7 @@ class Bootstrap {
 			}
 		);
 
-		include_once( __DIR__ . '/shortcode/wp-contents-outline.php' );
+		include_once __DIR__ . '/shortcode/wp-contents-outline.php';
 
 		if ( apply_filters( 'inc2734_wp_contents_outline_enqueue_js', true ) ) {
 			add_action( 'wp_enqueue_scripts', array( $this, '_wp_enqueue_scripts' ), 9 );
