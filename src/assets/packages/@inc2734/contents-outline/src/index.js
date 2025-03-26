@@ -131,6 +131,25 @@ const newContentsOutline = (target, options) => {
     return _target;
   };
 
+  const getRefinedTarget = (targetElement) => {
+    let current = targetElement;
+
+    while (true) {
+      const parent = current.parentElement;
+      if (!parent) break;
+
+      const onlyChild = parent.children.length === 1;
+
+      if (onlyChild) {
+        current = parent;
+      } else {
+        break;
+      }
+    }
+
+    return current;
+  };
+
   const tree = document.createElement('ol');
   let beforeHeadingLevel = undefined;
   let hierarchical = 0;
@@ -168,10 +187,11 @@ const newContentsOutline = (target, options) => {
     const firstHeading = newHeadings[0];
     const moveTo = options?.moveTo;
     if ( !! moveTo ) {
+      const movingTarget = getRefinedTarget(target);
       const t = getReferenceElement(firstHeading, moveTo);
-      t.parentNode.insertBefore(target, t);
+      t.parentNode.insertBefore(movingTarget, t);
     } else {
-      firstHeading.parentNode.insertBefore(target, firstHeading);
+      firstHeading.parentNode.insertBefore(movingTarget, firstHeading);
     }
   }
 
