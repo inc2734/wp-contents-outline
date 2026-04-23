@@ -1,5 +1,6 @@
 {
 	"core": null,
+	"port": 8889,
 	"testsEnvironment": false,
 	"mappings": {
 		"wp-content/plugins/wp-contents-outline": "./"
