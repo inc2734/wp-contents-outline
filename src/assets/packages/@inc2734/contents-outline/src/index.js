@@ -81,12 +81,15 @@ const newContentsOutline = (target, options) => {
 
   const getHeadingLevel = (heading) => !! heading ? parseInt(heading.tagName.replace('H', '')) : undefined;
 
+  const itemByHeading = new Map();
+
   const createItem = (heading) => {
     const li = document.createElement('li');
     const a = document.createElement('a');
     a.textContent = heading.textContent.replace(/[\n\r]/g, '');
     a.setAttribute('href', `#${ encodeURI(heading.getAttribute('id')) }`);
     li.appendChild(a);
+    itemByHeading.set(heading, li);
     return li;
   };
 
@@ -195,37 +198,71 @@ const newContentsOutline = (target, options) => {
     }
   }
 
-  if ('function' === typeof IntersectionObserver) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const currentItem = target.querySelector('[data-is-current="true"]');
-            if (!! currentItem) {
-              currentItem.removeAttribute('data-is-current');
-            }
-            const newCurrentLink = target.querySelector(`a[href='#${ encodeURI(entry.target.id) }']`);
-            if (!! newCurrentLink) {
-              newCurrentLink.parentElement.setAttribute('data-is-current', 'true');
-            }
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: '-50% 0px',
-        threshold: 0,
-      }
-    );
-
-    [].slice.call(newHeadings).forEach((heading) => {
-      observer.observe(heading);
-    });
-  }
-
   co.appendChild(tree);
   target.setAttribute('aria-hidden', 'false');
   target.setAttribute('data-initialized', 'true');
+
+  let currentItem;
+  let animationFrameId;
+
+  const getPixelValue = (value) => {
+    const parsedValue = parseFloat(value);
+    return Number.isFinite(parsedValue) ? parsedValue : 0;
+  };
+
+  const updateCurrent = () => {
+    const htmlStyle = window.getComputedStyle(document.documentElement);
+    const scrollPaddingTop = getPixelValue(
+      htmlStyle.getPropertyValue('scroll-padding-top')
+    );
+    const currentPosition = scrollPaddingTop
+      + (window.innerHeight - scrollPaddingTop) / 2;
+
+    let currentHeading = newHeadings[0];
+    for (let i = newHeadings.length - 1; 0 <= i; i--) {
+      const heading = newHeadings[i];
+
+      if (heading.getBoundingClientRect().top <= currentPosition + 1) {
+        currentHeading = heading;
+        break;
+      }
+    }
+
+    const newCurrentItem = itemByHeading.get(currentHeading);
+    if (currentItem === newCurrentItem) {
+      return;
+    }
+
+    if (!! currentItem) {
+      currentItem.removeAttribute('data-is-current');
+    }
+    if (!! newCurrentItem) {
+      newCurrentItem.setAttribute('data-is-current', 'true');
+    }
+    currentItem = newCurrentItem;
+  };
+
+  const scheduleUpdateCurrent = () => {
+    if ('undefined' !== typeof animationFrameId) {
+      return;
+    }
+
+    animationFrameId = window.requestAnimationFrame(() => {
+      animationFrameId = undefined;
+      updateCurrent();
+    });
+  };
+
+  window.addEventListener('scroll', scheduleUpdateCurrent, { passive: true });
+  window.addEventListener('resize', scheduleUpdateCurrent);
+  window.addEventListener('load', scheduleUpdateCurrent);
+  window.addEventListener('pageshow', scheduleUpdateCurrent);
+
+  if (!! document.fonts?.ready) {
+    document.fonts.ready.then(scheduleUpdateCurrent);
+  }
+
+  scheduleUpdateCurrent();
 };
 
 export default function ContentsOutline(target, args = {}) {
