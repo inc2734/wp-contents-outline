@@ -79,7 +79,21 @@ const newContentsOutline = (target, options) => {
     }
   );
 
-  const getHeadingLevel = (heading) => !! heading ? parseInt(heading.tagName.replace('H', '')) : undefined;
+  const getHeadingLevel = (heading) => {
+    if (! heading) {
+      return undefined;
+    }
+
+    const ariaLevel = heading.getAttribute('aria-level');
+    if (
+      'heading' === heading.getAttribute('role')
+      && /^[1-6]$/.test(ariaLevel)
+    ) {
+      return parseInt(ariaLevel, 10);
+    }
+
+    return parseInt(heading.tagName.replace('H', ''), 10);
+  };
 
   const itemByHeading = new Map();
 

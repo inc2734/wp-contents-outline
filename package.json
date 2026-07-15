@@ -10,7 +10,7 @@
 	"license": "GPL-2.0+",
 	"dependencies": {},
 	"devDependencies": {
-		"@inc2734/contents-outline": "0.1.9",
+		"@inc2734/contents-outline": "0.2.0",
 		"@wordpress/browserslist-config": "^6.50.0",
 		"@wordpress/scripts": "^32.3.0",
 		"@wordpress/env": "^11.9.0",

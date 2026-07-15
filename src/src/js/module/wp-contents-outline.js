@@ -17,7 +17,10 @@ export const wpContentsOutline = (wrapper) => {
     (selector) => {
       headings.forEach(
         (heading) => {
-          const targetSelector = `${selector} > ${heading}`;
+          const ariaLevel = heading.match(/^h([1-6])$/i);
+          const targetSelector = ariaLevel
+            ? `${selector} > ${heading}, ${selector} > [role="heading"][aria-level="${ariaLevel[1]}"]`
+            : `${selector} > ${heading}`;
           const list = post.querySelectorAll(targetSelector);
           if (1 > list.length) {
             return;
