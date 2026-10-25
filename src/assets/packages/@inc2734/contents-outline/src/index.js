@@ -23,7 +23,7 @@ const newContentsOutline = (target, options) => {
     return;
   }
 
-  const newHeadings = options.headings.filter(
+  const newHeadings = Array.from(options.headings).filter(
     (heading) => {
       let element = heading;
       let isParentsDisplayNone = false;
